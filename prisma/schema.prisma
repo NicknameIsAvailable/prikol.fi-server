@@ -1,14 +1,64 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  dotenv-filename = ".env.development.local"
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = env("POSTGRES_PRISMA_URL")
+}
+
+model User {
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  nickname  String    @unique
+  email     String    @unique
+  password  String
+  expenses  Expense[]
+}
+
+enum Currency {
+  USD // United States Dollar
+  EUR // Euro
+  JPY // Japanese Yen
+  GBP // British Pound Sterling
+  AUD // Australian Dollar
+  CAD // Canadian Dollar
+  CHF // Swiss Franc
+  CNY // Chinese Yuan
+  SEK // Swedish Krona
+  NZD // New Zealand Dollar
+  KRW // South Korean Won
+  SGD // Singapore Dollar
+  NOK // Norwegian Krone
+  MXN // Mexican Peso
+  INR // Indian Rupee
+  RUB // Russian Ruble
+  BRL // Brazilian Real
+  ZAR // South African Rand
+  HKD // Hong Kong Dollar
+  TRY // Turkish Lira
+}
+
+model Category {
+  id          String    @id @default(uuid())
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+  name        String    @default("")
+  description String    @default("")
+  imageUrl    String    @default("https://enhi97ljhzjfzi1x.public.blob.vercel-storage.com/_6d2896f5-3d6a-44dc-ba00-1630ad2ece04-kRK5uAsRWeUeGeXnhAn8B7x8Ye1nVY.jpg") @map("image_url")
+  expenses    Expense[]
+}
+
+model Expense {
+  id         String   @id @default(uuid())
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+  amount     Int      @default(0)
+  currency   Currency @default(USD)
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId String   @map("category_id")
+  user       User     @relation(fields: [userId], references: [id])
+  userId     String   @map("user_id")
 }
