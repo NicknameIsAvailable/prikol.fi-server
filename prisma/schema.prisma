@@ -1,6 +1,7 @@
 generator client {
   provider        = "prisma-client-js"
-  dotenv-filename = ".env.development.local"
+  dotenv-filename = ".env"
+  output          = "generated/client"
 }
 
 datasource db {
@@ -9,13 +10,14 @@ datasource db {
 }
 
 model User {
-  id        String    @id @default(uuid())
-  createdAt DateTime  @default(now()) @map("created_at")
-  updatedAt DateTime  @updatedAt @map("updated_at")
-  nickname  String    @unique
-  email     String    @unique
-  password  String
-  expenses  Expense[]
+  id         String     @id @default(uuid())
+  createdAt  DateTime   @default(now()) @map("created_at")
+  updatedAt  DateTime   @updatedAt @map("updated_at")
+  nickname   String     @unique
+  email      String     @unique
+  password   String
+  expenses   Expense[]
+  categories Category[]
 }
 
 enum Currency {
@@ -47,18 +49,24 @@ model Category {
   updatedAt   DateTime  @updatedAt @map("updated_at")
   name        String    @default("")
   description String    @default("")
-  imageUrl    String    @default("https://enhi97ljhzjfzi1x.public.blob.vercel-storage.com/_6d2896f5-3d6a-44dc-ba00-1630ad2ece04-kRK5uAsRWeUeGeXnhAn8B7x8Ye1nVY.jpg") @map("image_url")
+  iconName    String    @default("wallet") @map("icon_name")
+  color       String    @default("#000")
+  isDefault   Boolean   @default(false)
   expenses    Expense[]
+  user        User      @relation(fields: [userId], references: [id])
+  userId      String    @map("user_id")
 }
 
 model Expense {
-  id         String   @id @default(uuid())
-  createdAt  DateTime @default(now()) @map("created_at")
-  updatedAt  DateTime @updatedAt @map("updated_at")
-  amount     Int      @default(0)
-  currency   Currency @default(USD)
-  category   Category @relation(fields: [categoryId], references: [id])
-  categoryId String   @map("category_id")
-  user       User     @relation(fields: [userId], references: [id])
-  userId     String   @map("user_id")
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  amount      Int      @default(0)
+  currency    Currency @default(USD)
+  category    Category @relation(fields: [categoryId], references: [id])
+  description String
+  isExpense   Boolean  @default(true)
+  categoryId  String   @map("category_id")
+  user        User     @relation(fields: [userId], references: [id])
+  userId      String   @map("user_id")
 }

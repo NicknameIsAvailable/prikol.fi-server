@@ -1,26 +1,61 @@
 import { Injectable } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { hash } from 'argon2';
+import { RegistrationDto } from 'src/auth/dto/registration.dto';
+import { PrismaService } from 'src/prisma.service';
+import { UserDto } from './dto/user.dto';
 
 @Injectable()
 export class UserService {
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+  constructor(private prisma: PrismaService) {}
+
+  async getById(id: string) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password, ...user } = await this.prisma.user.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    return user;
   }
 
-  findAll() {
-    return `This action returns all user`;
+  getByEmail(email: string) {
+    return this.prisma.user.findUnique({
+      where: {
+        email,
+      },
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async create(dto: RegistrationDto) {
+    const user = {
+      email: dto.email,
+      nickname: dto.nickname,
+      password: await hash(dto.password),
+    };
+
+    return this.prisma.user.create({
+      data: user,
+    });
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async getProfile(id: string) {
+    const profile = await this.getById(id);
+    return profile;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async update(id: string, dto: UserDto) {
+    let data = dto;
+
+    if (dto.password) {
+      data = { ...data, password: await hash(data.password) };
+    }
+
+    return this.prisma.user.update({
+      where: {
+        id,
+      },
+      data,
+    });
   }
 }
