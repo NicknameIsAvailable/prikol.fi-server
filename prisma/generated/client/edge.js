@@ -168,7 +168,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/home/yaroslav/projects/js/prikol.fi-server/prisma/generated/client",
+      "value": "/home/yaroslav/projects/js/prikol.fi/prikol.fi-server/prisma/generated/client",
       "fromEnvVar": null
     },
     "config": {
@@ -186,8 +186,7 @@ const config = {
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null,
-    "schemaEnvPath": "../../../.env"
+    "rootEnvPath": null
   },
   "relativePath": "../..",
   "clientVersion": "5.13.0",
@@ -196,7 +195,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "ciName": "Vercel",
+  "postinstall": true,
   "inlineDatasources": {
     "db": {
       "url": {

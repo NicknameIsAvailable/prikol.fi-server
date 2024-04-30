@@ -10,12 +10,14 @@ import { AuthDto } from './dto/auth.dto';
 import { verify } from 'argon2';
 import { RegistrationDto } from './dto/registration.dto';
 import { Response } from 'express';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AuthService {
   constructor(
     private jwt: JwtService,
     private userService: UserService,
+    private configService: ConfigService,
   ) {}
 
   EXPIRE_DAY_REFRESH_TOKEN = 1;
@@ -96,7 +98,7 @@ export class AuthService {
 
     res.cookie(this.REFRESH_TOKEN_NAME, refreshToken, {
       httpOnly: true,
-      domain: 'localhost',
+      domain: this.configService.get<string>('DOMAIN'),
       expires: expiresIn,
       secure: true,
       sameSite: 'none',
@@ -106,7 +108,7 @@ export class AuthService {
   removeRefreshTokenToResponse(res: Response) {
     res.cookie(this.REFRESH_TOKEN_NAME, '', {
       httpOnly: true,
-      domain: 'localhost',
+      domain: this.configService.get<string>('DOMAIN'),
       expires: new Date(0),
       secure: true,
       sameSite: 'none',
