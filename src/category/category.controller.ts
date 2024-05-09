@@ -39,9 +39,11 @@ export class CategoryController {
   @HttpCode(200)
   @Auth()
   findAll(@CurrentUser('id') userId: string, @Param('id') id: string) {
-    if (!userId) throw new UnauthorizedException('You are not authorized');
+    console.log(123, userId);
 
-    return this.categoryService.find(userId, id);
+    if (!userId) throw new UnauthorizedException('You are not authorized');
+    if (id) return this.categoryService.find(userId, id);
+    return this.categoryService.find(userId);
   }
 
   @Delete(':id')

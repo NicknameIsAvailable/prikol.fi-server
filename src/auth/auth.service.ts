@@ -101,6 +101,7 @@ export class AuthService {
       domain: this.configService.get<string>('DOMAIN'),
       expires: expiresIn,
       secure: true,
+      // lax if production
       sameSite: 'none',
     });
   }
