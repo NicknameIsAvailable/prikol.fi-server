@@ -99,6 +99,7 @@ export class AuthService {
       domain: 'localhost',
       expires: expiresIn,
       secure: true,
+      // lax if production
       sameSite: 'none',
     });
   }

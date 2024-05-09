@@ -1,4 +1,11 @@
-import { IsBoolean, IsEnum, IsInt, IsString, MaxLength } from 'class-validator';
+import {
+  IsBoolean,
+  IsDateString,
+  IsEnum,
+  IsInt,
+  IsString,
+  MaxLength,
+} from 'class-validator';
 import { Currency } from 'prisma/generated/client';
 
 export class CreateExpenseDto {
@@ -11,6 +18,10 @@ export class CreateExpenseDto {
     message: 'Wrong currency',
   })
   currency: Currency;
+
+  @IsString()
+  @IsDateString()
+  date: string;
 
   @IsString()
   @MaxLength(1000, {

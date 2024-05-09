@@ -53,7 +53,10 @@ export class AuthController {
   @UsePipes(new ValidationPipe())
   @HttpCode(200)
   @Post('register')
-  async register(res: Response, @Body() dto: RegistrationDto) {
+  async register(
+    @Res({ passthrough: true }) res: Response,
+    @Body() dto: RegistrationDto,
+  ) {
     const { refreshToken, ...response } = await this.authService.register(dto);
     this.authService.addRefreshTokenToResponse(res, refreshToken);
 

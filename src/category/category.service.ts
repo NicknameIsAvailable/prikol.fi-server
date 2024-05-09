@@ -2,11 +2,13 @@ import { UserService } from './../user/user.service';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CategoryDto } from './dto/category.dto';
 import { PrismaService } from 'src/prisma.service';
+import { ExpenseService } from 'src/expense/expense.service';
 
 @Injectable()
 export class CategoryService {
   constructor(
     private prisma: PrismaService,
+    private expenseService: ExpenseService,
     private userService: UserService,
   ) {}
 
@@ -23,7 +25,7 @@ export class CategoryService {
   }
 
   async find(userId?: string, id?: string) {
-    const result = await this.prisma.category.findMany({
+    const data = await this.prisma.category.findMany({
       where: {
         AND: [
           { id },
@@ -54,7 +56,17 @@ export class CategoryService {
       },
     });
 
-    if (result.length === 0) throw new NotFoundException('Category not found');
+    if (data.length === 0) throw new NotFoundException('Category not found');
+
+    const result = [];
+
+    for (const item of data) {
+      const calc = await this.expenseService.getDifference(item.id, userId);
+      result.push({
+        ...item,
+        calc,
+      });
+    }
 
     return result;
   }

@@ -28,6 +28,26 @@ export class ExpenseController {
     return this.expenseService.create(categoryId, userId, dto);
   }
 
+  @Get('category/:categoryId')
+  @HttpCode(200)
+  @Auth()
+  findByCategory(
+    @CurrentUser('id') userId,
+    @Param('categoryId') categoryId: string,
+  ) {
+    return this.expenseService.findByCategory(categoryId, userId);
+  }
+
+  @Get('category/:categoryId/sum')
+  @HttpCode(200)
+  @Auth()
+  getDifference(
+    @CurrentUser('id') userId,
+    @Param('categoryId') categoryId: string,
+  ) {
+    return this.expenseService.getDifference(categoryId, userId);
+  }
+
   @Get()
   @Auth()
   findAll(@CurrentUser('id') userId: string, id: string) {
