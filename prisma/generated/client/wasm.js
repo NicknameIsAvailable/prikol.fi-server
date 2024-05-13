@@ -145,7 +145,6 @@ exports.Prisma.ExpenseScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   amount: 'amount',
-  currency: 'currency',
   description: 'description',
   isExpense: 'isExpense',
   categoryId: 'categoryId',
@@ -162,28 +161,7 @@ exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
 };
-exports.Currency = exports.$Enums.Currency = {
-  USD: 'USD',
-  EUR: 'EUR',
-  JPY: 'JPY',
-  GBP: 'GBP',
-  AUD: 'AUD',
-  CAD: 'CAD',
-  CHF: 'CHF',
-  CNY: 'CNY',
-  SEK: 'SEK',
-  NZD: 'NZD',
-  KRW: 'KRW',
-  SGD: 'SGD',
-  NOK: 'NOK',
-  MXN: 'MXN',
-  INR: 'INR',
-  RUB: 'RUB',
-  BRL: 'BRL',
-  ZAR: 'ZAR',
-  HKD: 'HKD',
-  TRY: 'TRY'
-};
+
 
 exports.Prisma.ModelName = {
   User: 'User',

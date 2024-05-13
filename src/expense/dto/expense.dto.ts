@@ -1,23 +1,16 @@
 import {
   IsBoolean,
   IsDateString,
-  IsEnum,
   IsInt,
   IsString,
   MaxLength,
 } from 'class-validator';
-import { Currency } from 'prisma/generated/client';
 
 export class CreateExpenseDto {
   @IsInt({
     message: 'Amount must be an integer',
   })
   amount: number;
-
-  @IsEnum(Currency, {
-    message: 'Wrong currency',
-  })
-  currency: Currency;
 
   @IsString()
   @IsDateString()

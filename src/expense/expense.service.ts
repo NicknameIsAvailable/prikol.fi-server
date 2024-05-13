@@ -31,6 +31,9 @@ export class ExpenseService {
           },
         ],
       },
+      include: {
+        category: true,
+      },
     });
 
     if (result.length === 0) throw new NotFoundException('Category not found');
@@ -49,6 +52,9 @@ export class ExpenseService {
             },
           },
         ],
+      },
+      include: {
+        category: true,
       },
     });
 
@@ -78,6 +84,7 @@ export class ExpenseService {
         amount: true,
       },
       where: {
+        isExpense: false,
         userId,
         categoryId,
       },

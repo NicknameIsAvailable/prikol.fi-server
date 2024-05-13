@@ -30,41 +30,6 @@ export type Category = $Result.DefaultSelection<Prisma.$CategoryPayload>
 export type Expense = $Result.DefaultSelection<Prisma.$ExpensePayload>
 
 /**
- * Enums
- */
-export namespace $Enums {
-  export const Currency: {
-  USD: 'USD',
-  EUR: 'EUR',
-  JPY: 'JPY',
-  GBP: 'GBP',
-  AUD: 'AUD',
-  CAD: 'CAD',
-  CHF: 'CHF',
-  CNY: 'CNY',
-  SEK: 'SEK',
-  NZD: 'NZD',
-  KRW: 'KRW',
-  SGD: 'SGD',
-  NOK: 'NOK',
-  MXN: 'MXN',
-  INR: 'INR',
-  RUB: 'RUB',
-  BRL: 'BRL',
-  ZAR: 'ZAR',
-  HKD: 'HKD',
-  TRY: 'TRY'
-};
-
-export type Currency = (typeof Currency)[keyof typeof Currency]
-
-}
-
-export type Currency = $Enums.Currency
-
-export const Currency: typeof $Enums.Currency
-
-/**
  * ##  Prisma Client ʲˢ
  * 
  * Type-safe database client for TypeScript & Node.js
@@ -3106,7 +3071,6 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     amount: number | null
-    currency: $Enums.Currency | null
     description: string | null
     isExpense: boolean | null
     categoryId: string | null
@@ -3119,7 +3083,6 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     amount: number | null
-    currency: $Enums.Currency | null
     description: string | null
     isExpense: boolean | null
     categoryId: string | null
@@ -3132,7 +3095,6 @@ export namespace Prisma {
     createdAt: number
     updatedAt: number
     amount: number
-    currency: number
     description: number
     isExpense: number
     categoryId: number
@@ -3155,7 +3117,6 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     amount?: true
-    currency?: true
     description?: true
     isExpense?: true
     categoryId?: true
@@ -3168,7 +3129,6 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     amount?: true
-    currency?: true
     description?: true
     isExpense?: true
     categoryId?: true
@@ -3181,7 +3141,6 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     amount?: true
-    currency?: true
     description?: true
     isExpense?: true
     categoryId?: true
@@ -3281,7 +3240,6 @@ export namespace Prisma {
     createdAt: Date
     updatedAt: Date
     amount: number
-    currency: $Enums.Currency
     description: string
     isExpense: boolean
     categoryId: string
@@ -3313,7 +3271,6 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     amount?: boolean
-    currency?: boolean
     description?: boolean
     isExpense?: boolean
     categoryId?: boolean
@@ -3328,7 +3285,6 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     amount?: boolean
-    currency?: boolean
     description?: boolean
     isExpense?: boolean
     categoryId?: boolean
@@ -3354,7 +3310,6 @@ export namespace Prisma {
       createdAt: Date
       updatedAt: Date
       amount: number
-      currency: $Enums.Currency
       description: string
       isExpense: boolean
       categoryId: string
@@ -3761,7 +3716,6 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"Expense", 'DateTime'>
     readonly updatedAt: FieldRef<"Expense", 'DateTime'>
     readonly amount: FieldRef<"Expense", 'Float'>
-    readonly currency: FieldRef<"Expense", 'Currency'>
     readonly description: FieldRef<"Expense", 'String'>
     readonly isExpense: FieldRef<"Expense", 'Boolean'>
     readonly categoryId: FieldRef<"Expense", 'String'>
@@ -4126,7 +4080,6 @@ export namespace Prisma {
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     amount: 'amount',
-    currency: 'currency',
     description: 'description',
     isExpense: 'isExpense',
     categoryId: 'categoryId',
@@ -4204,20 +4157,6 @@ export namespace Prisma {
    * Reference to a field of type 'Float[]'
    */
   export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'Currency'
-   */
-  export type EnumCurrencyFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Currency'>
-    
-
-
-  /**
-   * Reference to a field of type 'Currency[]'
-   */
-  export type ListEnumCurrencyFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Currency[]'>
     
 
 
@@ -4387,7 +4326,6 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Expense"> | Date | string
     updatedAt?: DateTimeFilter<"Expense"> | Date | string
     amount?: FloatFilter<"Expense"> | number
-    currency?: EnumCurrencyFilter<"Expense"> | $Enums.Currency
     description?: StringFilter<"Expense"> | string
     isExpense?: BoolFilter<"Expense"> | boolean
     categoryId?: StringFilter<"Expense"> | string
@@ -4402,7 +4340,6 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     amount?: SortOrder
-    currency?: SortOrder
     description?: SortOrder
     isExpense?: SortOrder
     categoryId?: SortOrder
@@ -4420,7 +4357,6 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Expense"> | Date | string
     updatedAt?: DateTimeFilter<"Expense"> | Date | string
     amount?: FloatFilter<"Expense"> | number
-    currency?: EnumCurrencyFilter<"Expense"> | $Enums.Currency
     description?: StringFilter<"Expense"> | string
     isExpense?: BoolFilter<"Expense"> | boolean
     categoryId?: StringFilter<"Expense"> | string
@@ -4435,7 +4371,6 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     amount?: SortOrder
-    currency?: SortOrder
     description?: SortOrder
     isExpense?: SortOrder
     categoryId?: SortOrder
@@ -4456,7 +4391,6 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Expense"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Expense"> | Date | string
     amount?: FloatWithAggregatesFilter<"Expense"> | number
-    currency?: EnumCurrencyWithAggregatesFilter<"Expense"> | $Enums.Currency
     description?: StringWithAggregatesFilter<"Expense"> | string
     isExpense?: BoolWithAggregatesFilter<"Expense"> | boolean
     categoryId?: StringWithAggregatesFilter<"Expense"> | string
@@ -4627,7 +4561,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     amount?: number
-    currency?: $Enums.Currency
     description: string
     isExpense?: boolean
     date?: Date | string
@@ -4640,7 +4573,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     amount?: number
-    currency?: $Enums.Currency
     description: string
     isExpense?: boolean
     categoryId: string
@@ -4653,7 +4585,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     amount?: FloatFieldUpdateOperationsInput | number
-    currency?: EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
     description?: StringFieldUpdateOperationsInput | string
     isExpense?: BoolFieldUpdateOperationsInput | boolean
     date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -4666,7 +4597,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     amount?: FloatFieldUpdateOperationsInput | number
-    currency?: EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
     description?: StringFieldUpdateOperationsInput | string
     isExpense?: BoolFieldUpdateOperationsInput | boolean
     categoryId?: StringFieldUpdateOperationsInput | string
@@ -4679,7 +4609,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     amount?: number
-    currency?: $Enums.Currency
     description: string
     isExpense?: boolean
     categoryId: string
@@ -4692,7 +4621,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     amount?: FloatFieldUpdateOperationsInput | number
-    currency?: EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
     description?: StringFieldUpdateOperationsInput | string
     isExpense?: BoolFieldUpdateOperationsInput | boolean
     date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -4703,7 +4631,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     amount?: FloatFieldUpdateOperationsInput | number
-    currency?: EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
     description?: StringFieldUpdateOperationsInput | string
     isExpense?: BoolFieldUpdateOperationsInput | boolean
     categoryId?: StringFieldUpdateOperationsInput | string
@@ -4881,13 +4808,6 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
-  export type EnumCurrencyFilter<$PrismaModel = never> = {
-    equals?: $Enums.Currency | EnumCurrencyFieldRefInput<$PrismaModel>
-    in?: $Enums.Currency[] | ListEnumCurrencyFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Currency[] | ListEnumCurrencyFieldRefInput<$PrismaModel>
-    not?: NestedEnumCurrencyFilter<$PrismaModel> | $Enums.Currency
-  }
-
   export type CategoryRelationFilter = {
     is?: CategoryWhereInput
     isNot?: CategoryWhereInput
@@ -4898,7 +4818,6 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     amount?: SortOrder
-    currency?: SortOrder
     description?: SortOrder
     isExpense?: SortOrder
     categoryId?: SortOrder
@@ -4915,7 +4834,6 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     amount?: SortOrder
-    currency?: SortOrder
     description?: SortOrder
     isExpense?: SortOrder
     categoryId?: SortOrder
@@ -4928,7 +4846,6 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     amount?: SortOrder
-    currency?: SortOrder
     description?: SortOrder
     isExpense?: SortOrder
     categoryId?: SortOrder
@@ -4954,16 +4871,6 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
-  }
-
-  export type EnumCurrencyWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Currency | EnumCurrencyFieldRefInput<$PrismaModel>
-    in?: $Enums.Currency[] | ListEnumCurrencyFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Currency[] | ListEnumCurrencyFieldRefInput<$PrismaModel>
-    not?: NestedEnumCurrencyWithAggregatesFilter<$PrismaModel> | $Enums.Currency
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumCurrencyFilter<$PrismaModel>
-    _max?: NestedEnumCurrencyFilter<$PrismaModel>
   }
 
   export type ExpenseCreateNestedManyWithoutUserInput = {
@@ -5138,10 +5045,6 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type EnumCurrencyFieldUpdateOperationsInput = {
-    set?: $Enums.Currency
-  }
-
   export type CategoryUpdateOneRequiredWithoutExpensesNestedInput = {
     create?: XOR<CategoryCreateWithoutExpensesInput, CategoryUncheckedCreateWithoutExpensesInput>
     connectOrCreate?: CategoryCreateOrConnectWithoutExpensesInput
@@ -5249,13 +5152,6 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
-  export type NestedEnumCurrencyFilter<$PrismaModel = never> = {
-    equals?: $Enums.Currency | EnumCurrencyFieldRefInput<$PrismaModel>
-    in?: $Enums.Currency[] | ListEnumCurrencyFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Currency[] | ListEnumCurrencyFieldRefInput<$PrismaModel>
-    not?: NestedEnumCurrencyFilter<$PrismaModel> | $Enums.Currency
-  }
-
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -5272,22 +5168,11 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
-  export type NestedEnumCurrencyWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Currency | EnumCurrencyFieldRefInput<$PrismaModel>
-    in?: $Enums.Currency[] | ListEnumCurrencyFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Currency[] | ListEnumCurrencyFieldRefInput<$PrismaModel>
-    not?: NestedEnumCurrencyWithAggregatesFilter<$PrismaModel> | $Enums.Currency
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumCurrencyFilter<$PrismaModel>
-    _max?: NestedEnumCurrencyFilter<$PrismaModel>
-  }
-
   export type ExpenseCreateWithoutUserInput = {
     id?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     amount?: number
-    currency?: $Enums.Currency
     description: string
     isExpense?: boolean
     date?: Date | string
@@ -5299,7 +5184,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     amount?: number
-    currency?: $Enums.Currency
     description: string
     isExpense?: boolean
     categoryId: string
@@ -5374,7 +5258,6 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Expense"> | Date | string
     updatedAt?: DateTimeFilter<"Expense"> | Date | string
     amount?: FloatFilter<"Expense"> | number
-    currency?: EnumCurrencyFilter<"Expense"> | $Enums.Currency
     description?: StringFilter<"Expense"> | string
     isExpense?: BoolFilter<"Expense"> | boolean
     categoryId?: StringFilter<"Expense"> | string
@@ -5418,7 +5301,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     amount?: number
-    currency?: $Enums.Currency
     description: string
     isExpense?: boolean
     date?: Date | string
@@ -5430,7 +5312,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     amount?: number
-    currency?: $Enums.Currency
     description: string
     isExpense?: boolean
     date?: Date | string
@@ -5644,7 +5525,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     amount?: number
-    currency?: $Enums.Currency
     description: string
     isExpense?: boolean
     categoryId: string
@@ -5667,7 +5547,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     amount?: FloatFieldUpdateOperationsInput | number
-    currency?: EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
     description?: StringFieldUpdateOperationsInput | string
     isExpense?: BoolFieldUpdateOperationsInput | boolean
     date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -5679,7 +5558,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     amount?: FloatFieldUpdateOperationsInput | number
-    currency?: EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
     description?: StringFieldUpdateOperationsInput | string
     isExpense?: BoolFieldUpdateOperationsInput | boolean
     categoryId?: StringFieldUpdateOperationsInput | string
@@ -5691,7 +5569,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     amount?: FloatFieldUpdateOperationsInput | number
-    currency?: EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
     description?: StringFieldUpdateOperationsInput | string
     isExpense?: BoolFieldUpdateOperationsInput | boolean
     categoryId?: StringFieldUpdateOperationsInput | string
@@ -5738,7 +5615,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     amount?: number
-    currency?: $Enums.Currency
     description: string
     isExpense?: boolean
     date?: Date | string
@@ -5750,7 +5626,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     amount?: FloatFieldUpdateOperationsInput | number
-    currency?: EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
     description?: StringFieldUpdateOperationsInput | string
     isExpense?: BoolFieldUpdateOperationsInput | boolean
     date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -5762,7 +5637,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     amount?: FloatFieldUpdateOperationsInput | number
-    currency?: EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
     description?: StringFieldUpdateOperationsInput | string
     isExpense?: BoolFieldUpdateOperationsInput | boolean
     date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -5774,7 +5648,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     amount?: FloatFieldUpdateOperationsInput | number
-    currency?: EnumCurrencyFieldUpdateOperationsInput | $Enums.Currency
     description?: StringFieldUpdateOperationsInput | string
     isExpense?: BoolFieldUpdateOperationsInput | boolean
     date?: DateTimeFieldUpdateOperationsInput | Date | string
